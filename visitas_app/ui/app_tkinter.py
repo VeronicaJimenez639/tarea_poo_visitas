@@ -167,3 +167,32 @@ class AppVisitas(tk.Tk):
             messagebox.showinfo("Actualización exitosa", "El visitante fue actualizado correctamente.")
         except ValueError as error:
             messagebox.showwarning("Atención", str(error))
+
+    def _eliminar_visitante(self):
+        # Verifica que exista una fila seleccionada.
+        if self.cedula_seleccionada is None:
+            messagebox.showwarning(
+                "Atención",
+                "Primero seleccione un visitante de la tabla para eliminar."
+            )
+            return
+
+        # Pide confirmación antes de borrar el registro.
+        confirmacion = messagebox.askyesno(
+            "Confirmar eliminación",
+            f"¿Está seguro de eliminar al visitante con cédula {self.cedula_seleccionada}?"
+        )
+
+        if not confirmacion:
+            return
+
+        try:
+            self.visita_servicio.eliminar_visitante(self.cedula_seleccionada)
+
+            self._actualizar_tabla_visitantes()
+            self._limpiar_campos()
+
+            messagebox.showinfo("Eliminación exitosa", "El visitante fue eliminado correctamente.")
+        except ValueError as error:
+            messagebox.showerror("Error", str(error))
+
