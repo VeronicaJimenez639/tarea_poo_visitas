@@ -52,3 +52,39 @@ class AppVisitas(tk.Tk):
             row=1, column=1, columnspan=3, padx=5, pady=5, sticky="w"
         )
 
+        # ---------- Botones ----------
+        frame_botones = tk.Frame(self, padx=15, pady=5)
+        frame_botones.pack(fill="x")
+
+        boton_registrar = tk.Button(
+            frame_botones,
+            text="Registrar",
+            width=15,
+            command=self._registrar_visitante
+        )
+        boton_registrar.pack(side=tk.LEFT, padx=5)
+
+        boton_actualizar = tk.Button(
+            frame_botones,
+            text="Actualizar",
+            width=15,
+            command=self._actualizar_visitante
+        )
+        boton_actualizar.pack(side=tk.LEFT, padx=5)
+
+        boton_eliminar = tk.Button(
+            frame_botones,
+            text="Eliminar",
+            width=15,
+            command=self._eliminar_visitante
+        )
+        boton_eliminar.pack(side=tk.LEFT, padx=5)
+
+        boton_limpiar = tk.Button(
+            frame_botones,
+            text="Limpiar campos",
+            width=15,
+            command=self._limpiar_campos
+        )
+        boton_limpiar.pack(side=tk.LEFT, padx=5)
+
