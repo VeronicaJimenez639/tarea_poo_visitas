@@ -26,3 +26,29 @@ class AppVisitas(tk.Tk):
 
         # Se carga la tabla al iniciar la app.
         self._actualizar_tabla_visitantes()
+
+    def _crear_componentes(self):
+        # ---------- Formulario ----------
+        frame_formulario = tk.Frame(self, padx=15, pady=15) 
+        frame_formulario.pack(fill="x")
+
+        etiqueta_cedula = tk.Label(frame_formulario, text="Cédula:")
+        etiqueta_cedula.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+
+        self.entrada_cedula = tk.Entry(frame_formulario, width=25)
+        self.entrada_cedula.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+
+        etiqueta_nombre = tk.Label(frame_formulario, text="Nombre completo:")
+        etiqueta_nombre.grid(row=0, column=2, padx=5, pady=5, sticky="w")
+
+        self.entrada_nombre_completo = tk.Entry(frame_formulario, width=35)
+        self.entrada_nombre_completo.grid(row=0, column=3, padx=5, pady=5, sticky="w")
+
+        etiqueta_motivo = tk.Label(frame_formulario, text="Motivo de visita:")
+        etiqueta_motivo.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+
+        self.entrada_motivo_visita = tk.Entry(frame_formulario, width=70)
+        self.entrada_motivo_visita.grid(
+            row=1, column=1, columnspan=3, padx=5, pady=5, sticky="w"
+        )
+
