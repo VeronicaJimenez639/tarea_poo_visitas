@@ -211,3 +211,23 @@ class AppVisitas(tk.Tk):
         # También se quita la selección visual de la tabla.
         self.tabla_visitantes.selection_remove(self.tabla_visitantes.selection())
 
+    def _actualizar_tabla_visitantes(self):
+        # Primero se limpia la tabla para volverla a cargar.
+        for item in self.tabla_visitantes.get_children():
+            self.tabla_visitantes.delete(item)
+
+        # Se obtienen todos los visitantes desde el servicio.
+        lista_visitantes = self.visita_servicio.obtener_todos_los_visitantes()
+
+        # Se insertan los registros actuales en la tabla.
+        for visitante in lista_visitantes:
+            self.tabla_visitantes.insert(
+                "",
+                tk.END,
+                values=(
+                    visitante.cedula,
+                    visitante.nombre_completo,
+                    visitante.motivo_visita
+                )
+            )
+
