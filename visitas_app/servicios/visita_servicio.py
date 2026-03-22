@@ -23,3 +23,13 @@ class VisitaServicio:
         # Retorna la lista completa de visitantes.
         return self._lista_visitantes
 
+    def actualizar_visitante(self, visitante_actualizado: Visitante) -> None:
+        # Recorre la lista buscando el visitante con la misma cédula.
+        for indice, visitante_guardado in enumerate(self._lista_visitantes):
+            if visitante_guardado.cedula == visitante_actualizado.cedula:
+                # Si lo encuentra, reemplaza el objeto anterior por el actualizado.
+                self._lista_visitantes[indice] = visitante_actualizado
+                return
+
+        # Si no lo encuentra, lanza un error.
+        raise ValueError("No se encontró el visitante para actualizar.")
