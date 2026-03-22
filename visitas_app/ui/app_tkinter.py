@@ -137,3 +137,33 @@ class AppVisitas(tk.Tk):
             # Si ocurre una validación incorrecta, se muestra una advertencia.
             messagebox.showwarning("Atención", str(error))
 
+    def _actualizar_visitante(self):
+        # Verifica que haya un registro seleccionado antes de actualizar.
+        if self.cedula_seleccionada is None:
+            messagebox.showwarning(
+                "Atención",
+                "Primero seleccione un visitante de la tabla para actualizar."
+            )
+            return
+
+        # Se obtienen los nuevos valores del formulario.
+        nombre_completo = self.entrada_nombre_completo.get().strip()
+        motivo_visita = self.entrada_motivo_visita.get().strip()
+
+        try:
+            # La cédula se mantiene igual porque es el identificador único.
+            visitante_actualizado = Visitante(
+                self.cedula_seleccionada,
+                nombre_completo,
+                motivo_visita
+            )
+
+            # Se envía el nuevo objeto al servicio para reemplazar el registro anterior.
+            self.visita_servicio.actualizar_visitante(visitante_actualizado)
+
+            self._actualizar_tabla_visitantes()
+            self._limpiar_campos()
+
+            messagebox.showinfo("Actualización exitosa", "El visitante fue actualizado correctamente.")
+        except ValueError as error:
+            messagebox.showwarning("Atención", str(error))
