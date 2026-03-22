@@ -19,3 +19,7 @@ class VisitaServicio:
         # Si no existe repetido, se agrega a la lista.
         self._lista_visitantes.append(visitante_nuevo)
 
+    def obtener_todos_los_visitantes(self) -> List[Visitante]:
+        # Retorna la lista completa de visitantes.
+        return self._lista_visitantes
+
