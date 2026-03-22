@@ -43,3 +43,12 @@ class VisitaServicio:
 
         # Si existe, lo elimina de la lista.
         self._lista_visitantes.remove(visitante_encontrado)
+
+    def _buscar_visitante_por_cedula(self, cedula: str) -> Optional[Visitante]:
+        # Método interno para buscar un visitante por su cédula.
+        for visitante in self._lista_visitantes:
+            if visitante.cedula == cedula:
+                return visitante
+
+        # Si no encuentra coincidencia, retorna None.
+        return None
