@@ -11,3 +11,7 @@ def main():
     # Inicia el ciclo principal de la aplicación.
     aplicacion.mainloop()
 
+# Este condicional asegura que main() solo se ejecute
+# cuando el archivo se corre directamente.
+if __name__ == "__main__":
+    main()
