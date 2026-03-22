@@ -33,3 +33,13 @@ class VisitaServicio:
 
         # Si no lo encuentra, lanza un error.
         raise ValueError("No se encontró el visitante para actualizar.")
+    
+    def eliminar_visitante(self, cedula: str) -> None:
+        # Busca al visitante por su cédula.
+        visitante_encontrado = self._buscar_visitante_por_cedula(cedula)
+
+        if visitante_encontrado is None:
+            raise ValueError("El visitante no existe o ya fue eliminado.")
+
+        # Si existe, lo elimina de la lista.
+        self._lista_visitantes.remove(visitante_encontrado)
