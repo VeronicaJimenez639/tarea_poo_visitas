@@ -88,3 +88,30 @@ class AppVisitas(tk.Tk):
         )
         boton_limpiar.pack(side=tk.LEFT, padx=5)
 
+        # ---------- Tabla ----------
+        frame_tabla = tk.Frame(self, padx=15, pady=15)
+        frame_tabla.pack(fill="both", expand=True)
+
+        columnas = ("cedula", "nombre_completo", "motivo_visita")
+        self.tabla_visitantes = ttk.Treeview(
+            frame_tabla,
+            columns=columnas,
+            show="headings",
+            height=12
+        )
+
+        # Encabezados de la tabla.
+        self.tabla_visitantes.heading("cedula", text="Cédula")
+        self.tabla_visitantes.heading("nombre_completo", text="Nombre completo")
+        self.tabla_visitantes.heading("motivo_visita", text="Motivo de visita")
+
+        # Ancho de las columnas.
+        self.tabla_visitantes.column("cedula", width=150)
+        self.tabla_visitantes.column("nombre_completo", width=250)
+        self.tabla_visitantes.column("motivo_visita", width=350)
+
+        self.tabla_visitantes.pack(fill="both", expand=True)
+
+        # Evento que permite cargar en el formulario los datos seleccionados.
+        self.tabla_visitantes.bind("<<TreeviewSelect>>", self._cargar_datos_seleccionados)
+
