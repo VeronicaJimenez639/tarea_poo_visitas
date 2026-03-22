@@ -196,3 +196,18 @@ class AppVisitas(tk.Tk):
         except ValueError as error:
             messagebox.showerror("Error", str(error))
 
+    def _limpiar_campos(self):
+        # Reinicia la selección actual.
+        self.cedula_seleccionada = None
+
+        # La cédula se habilita otra vez por si antes estaba bloqueada.
+        self.entrada_cedula.config(state="normal")
+
+        # Se vacían todos los campos del formulario.
+        self.entrada_cedula.delete(0, tk.END)
+        self.entrada_nombre_completo.delete(0, tk.END)
+        self.entrada_motivo_visita.delete(0, tk.END)
+
+        # También se quita la selección visual de la tabla.
+        self.tabla_visitantes.selection_remove(self.tabla_visitantes.selection())
+
