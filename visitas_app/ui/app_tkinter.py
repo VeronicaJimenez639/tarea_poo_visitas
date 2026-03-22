@@ -231,3 +231,26 @@ class AppVisitas(tk.Tk):
                 )
             )
 
+    def _cargar_datos_seleccionados(self, event):
+        # Obtiene la fila seleccionada en el Treeview.
+        seleccion = self.tabla_visitantes.selection()
+
+        if not seleccion:
+            return
+
+        item_seleccionado = self.tabla_visitantes.item(seleccion[0])
+        valores_fila = item_seleccionado["values"]
+
+        # Limpia antes de volver a cargar datos en el formulario.
+        self._limpiar_campos()
+
+        # Guarda la cédula seleccionada para usarla en actualizar o eliminar.
+        self.cedula_seleccionada = str(valores_fila[0])
+
+        # Coloca en el formulario los valores de la fila elegida.
+        self.entrada_cedula.insert(0, valores_fila[0])
+        self.entrada_nombre_completo.insert(0, valores_fila[1])
+        self.entrada_motivo_visita.insert(0, valores_fila[2])
+
+        # Se bloquea la cédula para evitar cambiar el identificador del registro.
+        self.entrada_cedula.config(state="disabled")
