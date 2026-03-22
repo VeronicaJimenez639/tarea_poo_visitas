@@ -115,3 +115,25 @@ class AppVisitas(tk.Tk):
         # Evento que permite cargar en el formulario los datos seleccionados.
         self.tabla_visitantes.bind("<<TreeviewSelect>>", self._cargar_datos_seleccionados)
 
+    def _registrar_visitante(self):
+        # Obtiene los datos escritos en los campos.
+        cedula = self.entrada_cedula.get().strip()
+        nombre_completo = self.entrada_nombre_completo.get().strip()
+        motivo_visita = self.entrada_motivo_visita.get().strip()
+
+        try:
+            # Se crea el objeto visitante con los datos ingresados.
+            visitante_nuevo = Visitante(cedula, nombre_completo, motivo_visita)
+
+            # Se envía al servicio para registrarlo.
+            self.visita_servicio.registrar_visitante(visitante_nuevo)
+
+            # Se actualiza la tabla y se limpian los campos.
+            self._actualizar_tabla_visitantes()
+            self._limpiar_campos()
+
+            messagebox.showinfo("Registro exitoso", "El visitante fue registrado correctamente.")
+        except ValueError as error:
+            # Si ocurre una validación incorrecta, se muestra una advertencia.
+            messagebox.showwarning("Atención", str(error))
+
